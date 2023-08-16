@@ -3,7 +3,7 @@ var MierucaHM = function () {
     var hmObj = {
         local_url: window.location.href,
         referrer_url: document.referrer,
-        sWs: 'http://127.0.0.1:8000/hm',
+        sWs: 'ws://127.0.0.1:8000/hm',
         HM: {},
         site_id: 672436484,
         temp_scroll_pos: 0,

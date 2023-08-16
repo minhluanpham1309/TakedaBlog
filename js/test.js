@@ -188,10 +188,10 @@ var MierucaHM = function () {
                             e = e || window.event;
                             var xP = e.pageX !== undefined ? Math.floor(e.pageX) : 0,
                                     yP = e.pageY !== undefined ? Math.floor(e.pageY) : 0,
-                                    xPMax = xP + 50, xPMin = (xP >= 50) ? xP - 50 : 0,
-                                    yPMax = yP + 50, yPMin = (yP >= 50) ? yP - 50 : 0;
-                            if ((xPMin <= hmObj.tempXp && hmObj.tempXp <= xPMax)
-                                && (yPMin <= hmObj.tempYp && hmObj.tempYp <= yPMax)) {
+                                    xPMax = hmObj.tempXp + 50, xPMin = (hmObj.tempXp >= 50) ? hmObj.tempXp - 50 : 0,
+                                    yPMax = hmObj.tempYp + 50, yPMin = (hmObj.tempYp >= 50) ? hmObj.tempYp - 50 : 0;
+                            if ((xPMin <= xP && xP <= xPMax)
+                                && (yPMin <= yP && yP <= yPMax)) {
                                 if (this.nodeName !== "A") {
                                     return;
                                 }

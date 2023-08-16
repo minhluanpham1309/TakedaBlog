@@ -5,7 +5,7 @@ var MierucaHM = function () {
         referrer_url: document.referrer,
         sWs: ('https:' === document.location.protocol ? 'wss' : 'ws') + '://127.0.0.1:8000/hm',
         HM: {},
-        site_id: window.__fid[0][0],
+        site_id: 672436484,
         temp_scroll_pos: 0,
         idl: null,
         iwc: 0,
@@ -114,14 +114,14 @@ var MierucaHM = function () {
                     }
 
                     //Scroll handle
-                    window.addEventListener("scroll", function () {
-                        if (hmObj.time_out) {
-                            return;
-                        }
-                        hm.scrollHandle();
-                        hm.readHandle();
-                        hm.resetTimeOut();
-                    });
+                    // window.addEventListener("scroll", function () {
+                    //     if (hmObj.time_out) {
+                    //         return;
+                    //     }
+                    //     hm.scrollHandle();
+                    //     hm.readHandle();
+                    //     hm.resetTimeOut();
+                    // });
                     hm.resetTimeOut();
 
 
@@ -227,22 +227,22 @@ var MierucaHM = function () {
                 },
                 //</editor-fold>
                 //<editor-fold defaultstate="collapsed" desc="HANDLE LOAD POPUP SCRIPT EVENT">
-                popupHandle: function() {
-                    let a = document.createElement('script');
-                    a.type = 'text/javascript';
-                    a.async = true;
-                    a.src = document.location.protocol + '//hpjp.mieru-ca.com/embed'
-                            + '?service=heatmap-popup&tokenId='
-                            + window.__fid[0][0]
-                            + '&protocol=' + window.location.protocol
-                            + '&hostname=' + window.location.hostname
-                            + '&pathname=' + encodeURIComponent(window.location.pathname)
-                            + '&search=' + encodeURIComponent(window.location.search)
-                            + '&hash=' + encodeURIComponent(window.location.hash)
-                            + '&dv=' + hmObj.device;
-                    let b = document.getElementsByTagName('script')[0];
-                    b.parentNode.insertBefore(a, b);
-                }
+                // popupHandle: function() {
+                //     let a = document.createElement('script');
+                //     a.type = 'text/javascript';
+                //     a.async = true;
+                //     a.src = document.location.protocol + '//hpjp.mieru-ca.com/embed'
+                //             + '?service=heatmap-popup&tokenId='
+                //             + window.__fid[0][0]
+                //             + '&protocol=' + window.location.protocol
+                //             + '&hostname=' + window.location.hostname
+                //             + '&pathname=' + encodeURIComponent(window.location.pathname)
+                //             + '&search=' + encodeURIComponent(window.location.search)
+                //             + '&hash=' + encodeURIComponent(window.location.hash)
+                //             + '&dv=' + hmObj.device;
+                //     let b = document.getElementsByTagName('script')[0];
+                //     b.parentNode.insertBefore(a, b);
+                // }
                 //</editor-fold>
             };
 

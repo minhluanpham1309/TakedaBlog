@@ -186,10 +186,11 @@ var MierucaHM = function () {
                         hm.initWindowElement();
                         if (!hmObj.time_out) {
                             e = e || window.event;
+                            var ampl = 100;
                             var xP = e.pageX !== undefined ? Math.floor(e.pageX) : 0,
-                                    yP = e.pageY !== undefined ? Math.floor(e.pageY) : 0,
-                                    xPMax = hmObj.tempXp + 100, xPMin = (hmObj.tempXp >= 100) ? hmObj.tempXp - 100 : 0,
-                                    yPMax = hmObj.tempYp + 100, yPMin = (hmObj.tempYp >= 100) ? hmObj.tempYp - 100 : 0;
+                                yP = e.pageY !== undefined ? Math.floor(e.pageY) : 0,
+                                xPMax = hmObj.tempXp + ampl, xPMin = (hmObj.tempXp >= ampl) ? hmObj.tempXp - ampl : 0,
+                                yPMax = hmObj.tempYp + ampl, yPMin = (hmObj.tempYp >= ampl) ? hmObj.tempYp - ampl : 0;
                             if ((xPMin <= xP && xP <= xPMax)
                                 && (yPMin <= yP && yP <= yPMax)) {
                                 if (this.nodeName !== "A") {

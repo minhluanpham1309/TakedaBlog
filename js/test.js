@@ -189,9 +189,9 @@ var MierucaHM = function () {
                             var ampl = 50, 
                                 xP = e.pageX !== undefined ? Math.floor(e.pageX) : 0,
                                 yP = e.pageY !== undefined ? Math.floor(e.pageY) : 0,
-                                isPinchedActionX = Math.abs(hmObj.tempXp - xP) < ampl,
-                                isPinchedActionY = Math.abs(hmObj.tempYp - yP) < ampl;
-                            if ((hmObj.device === "m") && (!isPinchedActionX && !isPinchedActionY)) {
+                                isNotPinchedActionX = Math.abs(hmObj.tempXp - xP) < ampl,
+                                isNotPinchedActionY = Math.abs(hmObj.tempYp - yP) < ampl;
+                            if ((hmObj.device === "m") && (isNotPinchedActionX && isNotPinchedActionY)) {
                                 if (this.nodeName !== "A") {
                                     return;
                                 }

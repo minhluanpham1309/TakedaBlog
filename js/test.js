@@ -186,13 +186,12 @@ var MierucaHM = function () {
                         hm.initWindowElement();
                         if (!hmObj.time_out) {
                             e = e || window.event;
-                            var ampl = 50;
-                            var xP = e.pageX !== undefined ? Math.floor(e.pageX) : 0,
+                            var ampl = 50, 
+                                xP = e.pageX !== undefined ? Math.floor(e.pageX) : 0,
                                 yP = e.pageY !== undefined ? Math.floor(e.pageY) : 0,
-                                xPMax = hmObj.tempXp + ampl, xPMin = (hmObj.tempXp >= ampl) ? hmObj.tempXp - ampl : 0,
-                                yPMax = hmObj.tempYp + ampl, yPMin = (hmObj.tempYp >= ampl) ? hmObj.tempYp - ampl : 0;
-                            if ((hmObj.device === "m") && (xPMin <= xP && xP <= xPMax)
-                                && (yPMin <= yP && yP <= yPMax)) {
+                                isPinchedActionX = Math.abs(hmObj.tempXp - xP) < ampl,
+                                isPinchedActionY = Math.abs(hmObj.tempYp - yP) < ampl;
+                            if ((hmObj.device === "m") && (!isPinchedActionX && !isPinchedActionY)) {
                                 if (this.nodeName !== "A") {
                                     return;
                                 }

@@ -153,12 +153,12 @@ var mierucaOptimize = function () {
     };
     visualEditorCommunicate = () => {
         let parent = window.opener;
-        if (!parent || !document.referrer || new URL(document.referrer).origin !== "https://app.mieru-ca.com") {
+        if (!parent || !document.referrer || new URL(document.referrer).origin !== "http://localhost:8080") {
             return;
         }
         // Listen for messages from the sender tab
         window.addEventListener('message', (event) => {
-            if (event.origin !== "https://app.mieru-ca.com") {
+            if (event.origin !== "http://localhost:8080") {
                 return;
             }
             let dataMessage = event.data;

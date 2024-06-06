@@ -150,6 +150,40 @@ var mierucaOptimize = function () {
         urlParams.delete('_mo');
         url.search = urlParams.toString();
     };
+    visualEditorCommunicate = () => {
+        let parent = window.opener;
+        if (!parent || !document.referrer || new URL(document.referrer).origin !== "https://app.mieru-ca.com") {
+            return;
+        }
+        // Listen for messages from the sender tab
+        window.addEventListener('message', (event) => {
+            if (event.origin !== "https://app.mieru-ca.com") {
+                return;
+            }
+            let dataMessage = event.data;
+            switch (dataMessage.action) {
+                case "VISUAL_EDITOR_SCRIPT" : {
+                    if (dataMessage.status === "open" && dataMessage.code === siteId) {
+                        event.source.postMessage({
+                            "action" : "VISUAL_EDITOR_SCRIPT",
+                            "status" : "ready"
+                        },event.origin);
+                        const veLayout = dataMessage.data.html;
+                        document.body.insertAdjacentHTML('beforeend', veLayout);
+
+                        var blob = new Blob([dataMessage.data.script], {type: 'text/javascript'});
+                        var url = URL.createObjectURL(blob,);
+                        let a = document.createElement("script");
+                        a.type = "text/javascript",
+                        a.async = !0,
+                        a.src = url;
+                        let n = document.getElementsByTagName("script")[0];
+                        n.parentNode.insertBefore(a, n);
+                    }
+                }
+            }
+        });
+    };
 };
 
 (function () {

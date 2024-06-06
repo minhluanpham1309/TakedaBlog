@@ -1,6 +1,6 @@
 var mierucaOptimize = function () {
 
-    this.protocol = window.location.protocol;
+    this.protocol = "http:";
 
     this.encodeValue = (value) => {
         return encodeURIComponent(value);
@@ -40,6 +40,7 @@ var mierucaOptimize = function () {
 
     this.init = () => {
         window.mojsId = 1;
+        visualEditorCommunicate();
         if (isHMCapture()) {
             return;
         }

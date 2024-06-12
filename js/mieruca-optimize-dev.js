@@ -171,7 +171,7 @@ var mierucaOptimize = function () {
                         },event.origin);
                         const veLayout = dataMessage.data.html;
                         document.body.insertAdjacentHTML('beforeend', veLayout);
-                        debugger;
+
                         var blob = new Blob([dataMessage.data.script], {type: 'text/javascript'});
                         var url = URL.createObjectURL(blob,);
                         let a = document.createElement("script");

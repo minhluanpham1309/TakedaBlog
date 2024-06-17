@@ -7,7 +7,7 @@
         local_search: window.location.search,
         local_hash: window.location.hash,
         local_title: document.getElementsByTagName("title").length === 0 ? window.location.href : document.getElementsByTagName("title")[0].innerHTML,
-        rest_url:  'https://localhost:8085/action',
+        rest_url:  'http://localhost:8085/action',
         popup_condition_show: "show_by_time",
         popup_value_condition_show: 3,
         popup_value_condition_show_scroll_after_time: 0,

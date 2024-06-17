@@ -1,7 +1,7 @@
 let a = document.createElement('script');
 a.type = 'text/javascript';
 a.async = true;
-a.src = 'http://localhost:8085//embed'
+a.src = 'http://localhost:8085/embed'
     + '?service=heatmap-popup&tokenId='
     + "281543725"
     + '&protocol=' + window.location.protocol

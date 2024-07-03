@@ -191,4 +191,103 @@ var mierucaOptimize = function () {
     if (window.mojsId) return;
     window.__mieruca_optimize = new mierucaOptimize();
     window.__mieruca_optimize.init();
-}());
+}()),
+moObserverHandler = function (callbackFn, callbackArg, config = {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        characterData: true}) {
+    // Observer DOM change
+    let observer = new MutationObserver((mutations, observer) => {
+        if (callbackFn) {
+            callbackFn(callbackArg, mutations, observer);
+        }
+    });
+
+    observer.observe(document.body, config);
+    return observer;
+},
+moUrlChangeListener = function (callbackFn, callbackArg) {
+    // The popstate event is triggered when the user clicks the browser's back or forward buttons, or when the history.back(), history.forward(), 
+    // or history.go() methods are called
+    window.addEventListener('popstate', function(event) {
+        // The URL has changed, do something here
+        if (callbackFn) {
+            callbackFn(callbackArg);
+        }
+    });
+    // To detect URL changes caused by history.pushState() or history.replaceState()
+    // override the default behavior of these methods and manually trigger the popstate event
+    var pushState = history.pushState;
+    history.pushState = function(state, title, url) {
+        pushState.apply(history, arguments);
+        window.dispatchEvent(new Event('popstate'));
+    };
+},
+moGetELByXpath = (xpath) => {
+    return document.evaluate(xpath, document.body, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+},
+moWrap = (wrapper, el) => {
+    moInsertBefore(el, wrapper);
+    wrapper.appendChild(el);
+},
+moInsertAfter = (referenceNode, newNode) => {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+},
+moInsertBefore = (referenceNode, newNode) => {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode);
+},
+moHashString = async (str) => {
+    try {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(str);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        return hashHex;
+    } catch (error) {
+        console.log(error)
+    }
+},
+moApplyChange = async (stacks) => {
+    try {
+        for (let i = 0; i < stacks.length; i++) {
+            let item = stacks[i];
+            let currentEle = moGetELByXpath(item.xpath);
+            if (!currentEle) {
+                item.isCompleteSetting = false;
+                continue;
+            }
+            let currentEleHtml = currentEle.outerHTML;
+            let hashData = await moHashString(currentEleHtml).then(str => str);
+            if (item.hash !== hashData) {
+                item.isCompleteSetting = false;
+                continue;
+            }
+            if ((item.type === 'MOVE' || item.type === 'DUPLICATE')) {
+                let desEle = moGetELByXpath(item.desXpath);
+                if (!desEle) {
+                    item.isCompleteSetting = false;
+                    continue;
+                }
+                let currentDesEleHtml = desEle.outerHTML;
+                let hashDesData = await moHashString(currentDesEleHtml).then(str => str);
+                if (item.desHash !== hashDesData) {
+                    item.isCompleteSetting = false;
+                    continue;
+                }
+            }
+            if (item.isCompleteSetting) {
+                continue;
+            }
+            item.isCompleteSetting = true;
+            try {
+                eval(item.script);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    } catch (error) {
+        console.log(error)
+    }
+};

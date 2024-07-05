@@ -296,7 +296,7 @@ moApplyChange = async (stacks) => {
     }
 };
 (function () {
-    window.__optimizeid = window.__optimizeid || [];__optimizeid.push([1405081745]);
+    window.__optimizeid = window.__optimizeid || [];__optimizeid.push([1354769292]);
     window.__mieruca_optimize_queue = window.__mieruca_optimize_queue || [];
     window.__mieruca_optimize = new mierucaOptimize();
     window.__mieruca_optimize.init();

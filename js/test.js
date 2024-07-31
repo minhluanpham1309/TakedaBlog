@@ -99,7 +99,7 @@ var MierucaHM = function () {
                     webSocket.onmessage = function(event) {
                         // Just Show popup when site has not reached limit pv
                         if (event.data === "IS_ALLOW_LOAD_POPUP") {
-                            hm.popupHandle();
+                            //hm.popupHandle();
                             return;
                         }
 
@@ -116,10 +116,10 @@ var MierucaHM = function () {
                     //</editor-fold>
 
                     //Click handle
-//                    var elements = document.querySelectorAll("label,a,input,button,textarea,img,iframe,video"), i = 0;
-//                    for (i; i < elements.length; i += 1) {
-//                        hm.setEventClickListener(elements[i]);
-//                    }
+                   var elements = document.querySelectorAll("label,a,input,button,textarea,img,iframe,video"), i = 0;
+                   for (i; i < elements.length; i += 1) {
+                       hm.setEventClickListener(elements[i]);
+                   }
 //
 //                    //Scroll handle
 //                    window.addEventListener("scroll", function () {

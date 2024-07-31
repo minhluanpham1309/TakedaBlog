@@ -215,7 +215,7 @@ var MierucaHM = function () {
                                 click["txt"] = this.innerText === undefined ? "" : this.innerText;
                                 click["href"] = this.href === undefined ? "" : this.href;
                                 var img = this.getElementsByTagName("img");
-                                if (click["txt"] === "" && img.length) {
+                                if (!click["txt"] && click["txt"].trim().length === 0 && img.length) {
                                     click["txt"] = img[0].alt === undefined ? "" : img[0].alt;
                                 }
                             }

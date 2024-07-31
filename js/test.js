@@ -256,9 +256,8 @@ var MierucaHM = function () {
 
     //<editor-fold defaultstate="collapsed" desc="INIT">
     this.init = function () {
-        if (navigator.userAgent.includes("Lighthouse")) {return;}
-        // console.log()
-        // setTimeout(hm.sendPageView(), 500);
+        if (navigator.userAgent.includes("Chrome-Lighthouse")) {return;}
+        setTimeout(hm.sendPageView(), 500);
     };
     //</editor-fold>
 };

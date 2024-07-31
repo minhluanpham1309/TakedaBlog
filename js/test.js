@@ -256,10 +256,10 @@ var MierucaHM = function () {
 
     //<editor-fold defaultstate="collapsed" desc="INIT">
     this.init = function () {
-        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-        if (!userAgent.includes('Chrome-Lighthouse')) {
-            setTimeout(hm.sendPageView(), 500);
+        if ( navigator.webdriver || !navigator.userAgent.includes("Mozilla")) {
+            return;
         }
+        setTimeout(hm.sendPageView(), 500);
     };
     //</editor-fold>
 };

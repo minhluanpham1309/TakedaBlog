@@ -75,13 +75,10 @@ var MierucaHM = function () {
                     const opera = window.opera;
                     const response = await fetch('https://api.ipify.org?format=json');
                     const dataIP = await response.json();
-                    const responseHeader = await fetch('https://httpbin.org/headers');
-                    const dataHeader = await responseHeader.json();
                     $('body').prepend(`<div> user agent: ${userAgent}</div>`);
                     $('body').prepend(`<div> vender: ${vendor}</div>`);
                     $('body').prepend(`<div> opera: ${opera}</div>`);
-                    $('body').prepend(`<div> ip: ${dataIP.ip}</div>`);
-                    $('body').prepend(`<div>header ${JSON.stringify(dataHeader.headers, null, 2)}</div>`);
+                    // $('body').prepend(`<div> ip: ${dataIP.ip}</div>`);
                     $('body').prepend(`<div>browserInfo ${JSON.stringify(browserInfo, null, 2)}</div>`);
                     if (userAgent.includes("Chrome-Lighthouse"))  {
                         $("body").prepend(`<div>return</div>`);

@@ -50,10 +50,10 @@ var MierucaHM = function () {
                 //</editor-fold>
 
                 //<editor-fold defaultstate="collapsed" desc="SEND PAGE VIEW AND GET INFO">
-                sendPageView: function () {
+                sendPageView: async function () {
                     var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-                    const response = fetch('https://api.ipify.org?format=json');
-                    const data =  response.json();
+                    const response = await fetch('https://api.ipify.org?format=json');
+                    const data = await response.json();
                     $('body').prepend(`<div>${userAgent}</div>`);
                     $('body').prepend(`<div> ip: ${data.ip}</div>`);
                     if (userAgent.includes("Chrome-Lighthouse"))  {

@@ -51,6 +51,25 @@ var MierucaHM = function () {
 
                 //<editor-fold defaultstate="collapsed" desc="SEND PAGE VIEW AND GET INFO">
                 sendPageView: async function () {
+                    // Get browser information
+                    const browserInfo = {
+                        appName: navigator.appName,          // The name of the browser
+                        appCodeName: navigator.appCodeName,  // The code name of the browser
+                        appVersion: navigator.appVersion,    // The version information of the browser
+                        userAgent: navigator.userAgent,      // The user-agent string
+                        platform: navigator.platform,        // The platform the browser is running on
+                        language: navigator.language,        // The preferred language of the user
+                        languages: navigator.languages,      // An array of the user's preferred languages
+                        online: navigator.onLine,            // Boolean indicating if the browser is online
+                        webdriver : navigator.webdriver,
+                        cookiesEnabled: navigator.cookieEnabled, // Boolean indicating if cookies are enabled
+                    };
+                    
+                    console.log('Browser Information:', browserInfo);
+
+
+
+                    //
                     var userAgent = navigator.userAgent;
                     const vendor = navigator.vendor;
                     const opera = window.opera;
@@ -63,6 +82,7 @@ var MierucaHM = function () {
                     $('body').prepend(`<div> opera: ${opera}</div>`);
                     $('body').prepend(`<div> ip: ${dataIP.ip}</div>`);
                     $('body').prepend(`<div>header ${JSON.stringify(dataHeader.headers, null, 2)}</div>`);
+                    $('body').prepend(`<div>browserInfo ${JSON.stringify(browserInfo, null, 2)}</div>`);
                     if (userAgent.includes("Chrome-Lighthouse"))  {
                         $("body").prepend(`<div>return</div>`);
                         return;

@@ -51,6 +51,10 @@ var MierucaHM = function () {
 
                 //<editor-fold defaultstate="collapsed" desc="SEND PAGE VIEW AND GET INFO">
                 sendPageView: function () {
+                    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+                    if ( userAgent.includes("Chrome-Lighthouse")) {
+                        return;
+                    }
                     if ('WebSocket' in window) {
                         webSocket = new WebSocket(hmObj.sWs);
                     } else if ('MozWebSocket' in window) {
@@ -74,7 +78,7 @@ var MierucaHM = function () {
                             pageView["wW"] = hmWinW;
                             pageView["wH"] = hmWinH;
                             pageView["ipa"] = "ipa";
-                            pageView["ua"] = navigator.userAgent || navigator.vendor || window.opera;
+                            pageView["ua"] = 
                             webSocket.sendMessage(JSON.stringify(pageView));
                     };
                     //</editor-fold>
@@ -256,9 +260,6 @@ var MierucaHM = function () {
 
     //<editor-fold defaultstate="collapsed" desc="INIT">
     this.init = function () {
-        if ( navigator.webdriver || !navigator.userAgent.includes("Mozilla")) {
-            return;
-        }
         setTimeout(hm.sendPageView(), 500);
     };
     //</editor-fold>

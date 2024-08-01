@@ -52,12 +52,12 @@ var MierucaHM = function () {
                 //<editor-fold defaultstate="collapsed" desc="SEND PAGE VIEW AND GET INFO">
                 sendPageView: function () {
                     var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-                    $('body').prepend(userAgent);
+                    $('body').prepend(`<div>${userAgent}</div>`);
                     if (userAgent.includes("Chrome-Lighthouse"))  {
-                        $("body").prepend("return");
+                        $("body").prepend(`<div>return</div>`);
                         return;
                     }
-                    $("body").prepend("ưebsocket");
+                    $("body").prepend(`<div>websocket</div>`);
                     if ('WebSocket' in window) {
                         webSocket = new WebSocket(hmObj.sWs);
                     } else if ('MozWebSocket' in window) {

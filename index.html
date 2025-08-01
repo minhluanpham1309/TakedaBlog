@@ -490,6 +490,13 @@ f=false,w=window,d=document,v=d.querySelector('#vwoCode'),cK='_vwo_'+account_id+
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"> -->
   <!-- </script> -->
   <script async src="https://s.yimg.jp/images/listing/tool/cv/ytag.js"></script>
+  <script>
+  window.yjDataLayer = window.yjDataLayer || [];
+  function ytag() { yjDataLayer.push(arguments); }
+
+  // Thường gọi khi init
+  ytag({ "type": "ycl_cookie" });
+</script>
   <script async> 
     yahoo_report_conversion = function(url) {
       var opt = {
